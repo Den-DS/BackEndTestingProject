@@ -35,7 +35,8 @@ class APIClient:
         self.base_url = base_url
 
     def effects_recommended(self, dev_id, now=None):
-        req = {'dev_id': dev_id}
+        '''Request reccomended ef'''
+        req = {'devId': dev_id}
         if now:
             req['now'] = now
         resp = requests.post(self.base_url + '/v1.0/effects/recommended', data=json.dumps(req))

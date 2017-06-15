@@ -1,0 +1,6 @@
+1. Request bubbles list today, mark the bubbles as viewed, request bubbles list tomorrow
+2. Request bubbles list today, mark the bubbles as viewed, request bubbles today
+3. Request bubbles list today, mark the bubbles as shared, request bubbles list tomorrow
+4. Request bubbles list today, do not mark bubbles as viewed, request bubbles list tomorrow
+5. Create featuredEffects list, request bubbles list today, get bubbles featured effects(must get featured), mark effects as viewed,
+request effects tomorrow(must get featured).
