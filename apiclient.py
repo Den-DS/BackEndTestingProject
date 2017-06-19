@@ -54,6 +54,17 @@ class APIClient:
             }
         }
         requests.post(self.base_url + '/v1.0/devices/updateprofile', data=json.dumps(req))
-        # return json.loads(resp.text)
+
+    def send_shared_effects(self, dev_id, effect_timestamps):
+        new_shared = [{'effectId': effect_id, 'timestamp': ts} for (effect_id, ts) in effect_timestamps]
+        req = {
+            'updates': {
+                dev_id: {
+                    'newShared': new_shared,
+                }
+            }
+        }
+        requests.post(self.base_url + '/v1.0/devices/updateprofile', data=json.dumps(req))
+
 
 
