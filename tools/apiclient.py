@@ -1,14 +1,6 @@
-import requests
 import json
-from datetime import datetime
-
-
-envs = {
-
-    'dev':  'https://api-dev.banuba.net',
-    'uat':  'https://api-uat.banuba.net',
-    'prod': 'https://api.banuba.net'
-}
+import requests
+from test_config import *
 
 
 class Effect:

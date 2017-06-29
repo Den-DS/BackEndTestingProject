@@ -1,18 +1,11 @@
 "Check if clent gets new set of bubbles next day"
+from test_config import *
+from test_common import *
 
-from apiclient import *
-from dbclient import *
-from datetime import datetime, timedelta
-
-
-def millis(dt):
-    return int(dt.timestamp()*1000)
 
 def test_bubbles_viewed():
 
     devId = 'TC_3'
-    dt = datetime.now()
-    tomm = dt + timedelta(days=1, seconds=1)
 
 # if __name__ == '__main__':
     '''
@@ -21,15 +14,12 @@ def test_bubbles_viewed():
     '''
 
     # delete test id from dB
-    dbclient = DBClient('devices-dev')
     dbclient.delete_key(devId)
 
     # get first bubble pack
-    apiclient = APIClient(envs['dev'])
     effects = apiclient.effects_recommended(devId)
 
     # check if devId has been created in DB
-    print('Check if devId has been created in DB')
     assert 'generatedEffectIds' in dbclient.select_item(devId).keys(), '%s hasn\'t  been created in DB' % devId
 
     # create bubbleViewed data and send the request
