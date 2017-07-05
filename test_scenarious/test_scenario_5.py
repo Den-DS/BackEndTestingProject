@@ -8,7 +8,7 @@ def test_get_new_bubbles_tomorrow():
     Env - dev
     '''
 
-    devId = 'TC_1'
+    devId = 'TC_5'
 
     # delete test id from dB
     dbclient.delete_key(devId)
@@ -32,5 +32,4 @@ def test_get_new_bubbles_tomorrow():
     # check if 2 lists has the same ids
     assert(len(new_sources.intersection('NOT_VIEWED')) == 0), 'Pack\'s have OLD effects'
 
-if __name__ == '__main__':
-    test_get_new_bubbles_tomorrow()
+test_get_new_bubbles_tomorrow()

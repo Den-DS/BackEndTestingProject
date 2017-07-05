@@ -13,7 +13,7 @@ dbtables = {
 }
 
 
-set_env = 'uat'
+set_env = 'dev'
 
 test_env = envs[set_env]
 test_table = dbtables[set_env]

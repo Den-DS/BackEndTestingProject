@@ -1,4 +1,3 @@
-"Check if clent gets new set of bubbles next day"
 from test_config import *
 from test_common import *
 
@@ -19,7 +18,7 @@ def test_get_bubbles_today_again():
     effects = apiclient.effects_recommended(devId)
 
     # check if devId has been created in DB
-    assert 'generatedEffectIds' in dbclient.select_item(devId).keys(), '%s hasn\'t  been created in DB' % devId
+    assert 'generatedEffects' in dbclient.select_item(devId).keys(), '%s hasn\'t  been created in DB' % devId
 
     # crate bubbleViewed data and send the request
     effect_timestamps = [(effect.id, millis(dt)) for effect in effects]
@@ -28,9 +27,16 @@ def test_get_bubbles_today_again():
     # get today's bubble pack
     new_effects = apiclient.effects_recommended(devId)
 
-    # take bubles_ids in packs
+    # get bubles_ids in packs
     old_ids = set([effect.id for effect in effects])
     new_ids = set([effect.id for effect in new_effects])
 
+    # get bubles_ids in packs
+    old_sources = set([effect.source for effect in effects])
+    new_sources = set([effect.source for effect in new_effects])
+
     # check if 2 lists has the same ids
-    assert(len(old_ids.intersection(new_ids)) == 10), 'Pack\'s aren\'t identical'
+    assert(len(old_ids.intersection(new_ids)) == 10), 'Pack\'s aren\'t identical, ids do not match'
+    assert(old_sources == new_sources), 'Pack\'s aren\'t identical, sources do not match'
+
+test_get_bubbles_today_again()
