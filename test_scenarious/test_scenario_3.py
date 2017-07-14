@@ -1,4 +1,3 @@
-from test_config import *
 from test_common import *
 
 
@@ -15,14 +14,8 @@ def test_bubbles_viewed():
     env_vars = awsclient.get_environment_variable()
     shared_to_mix = env_vars['MAX_SHARED_EFFECTS_TO_MIX'] if ('MAX_SHARED_EFFECTS_TO_MIX' in env_vars) else 1
 
-    # delete test id from dB
-    dbclient.delete_key(devId)
-
-    # get first bubble pack
-    effects = apiclient.effects_recommended(devId)
-
-    # check if devId has been created in DB
-    assert 'generatedEffects' in dbclient.select_item(devId).keys(), '%s hasn\'t  been created in DB' % devId
+    # Clear DB, get 1st request, check if new entry with test devID has been created
+    effects = initiate_req(devId)
 
     # create bubbleViewed data and send the request
     effect_timestamps = [(effect.id, millis(dt)) for effect in effects]

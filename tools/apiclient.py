@@ -28,7 +28,9 @@ class APIClient:
         self.base_url = base_url
 
     def effects_recommended(self, dev_id, now=None):
-        req = {'devId': dev_id}
+        req = {'devId': dev_id,
+               'OS': 'iOS 10.1.3',
+               'AppVersion': '1.4'}
         if now:
             req['now'] = now
         resp = requests.post(self.base_url + '/v1.0/effects/recommended', data=json.dumps(req))

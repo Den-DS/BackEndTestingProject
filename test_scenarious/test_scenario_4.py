@@ -1,4 +1,3 @@
-from test_config import *
 from test_common import *
 
 def test_unseen_bubbles():
@@ -8,14 +7,8 @@ def test_unseen_bubbles():
     Delete devId if exists, request bubbles as today, request bubbles as tomorrow.
     !!!!Make script take into account if featured effects changed in DB or delete them
     '''
-    # delete test id from dB
-    dbclient.delete_key(devId)
-
-    # get first bubble pack
-    effects = apiclient.effects_recommended(devId)
-
-    # check if devId has been created in DB
-    assert 'generatedEffects' in dbclient.select_item(devId).keys(), '%s hasn\'t  been created in DB' % devId
+    #Clear DB, get 1st request, check if new entry with test devID has been created
+    effects = initiate_req(devId)
 
     # get tommorow bubble pack
     new_effects = apiclient.effects_recommended(devId, now=millis(tomm))
@@ -27,4 +20,5 @@ def test_unseen_bubbles():
     # check if 2 lists has the same ids
     assert(len(old_ids.intersection(new_ids)) == 10), '2 Packs are not identical'
 
-test_unseen_bubbles()
+if __name__ == '__main__':
+    test_unseen_bubbles()

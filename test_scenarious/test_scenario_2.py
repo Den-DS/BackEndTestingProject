@@ -1,4 +1,3 @@
-from test_config import *
 from test_common import *
 
 
@@ -6,19 +5,12 @@ def test_get_bubbles_today_again():
 
     '''
     Delete devId if exists, request bubbles as today, send them as viewed, request bubbles as tomorrow.
-    Env - dev
     '''
 
     devId = 'TC_2'
 
-    # delete test id from dB
-    dbclient.delete_key(devId)
-
-    # get first bubble pack
-    effects = apiclient.effects_recommended(devId)
-
-    # check if devId has been created in DB
-    assert 'generatedEffects' in dbclient.select_item(devId).keys(), '%s hasn\'t  been created in DB' % devId
+    # Clear DB, get 1st request, check if new entry with test devID has been created
+    effects = initiate_req(devId)
 
     # crate bubbleViewed data and send the request
     effect_timestamps = [(effect.id, millis(dt)) for effect in effects]
