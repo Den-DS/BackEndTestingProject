@@ -5,3 +5,10 @@
 5. Create featuredEffects list, request bubbles list today, get bubbles featured effects(must get featured), mark effects as viewed,
 request effects tomorrow(must get featured).
 6. blank scenario
+
+
+TODO:
+1. Create Admin_API
+2. Group test_cases_by_feature_being_tested
+3. Create DB assertions
+4. Create dependency time variable from  AUTO_NEXT_SURPRISE_INTERVAL

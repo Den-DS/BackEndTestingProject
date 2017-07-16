@@ -61,21 +61,5 @@ class APIClient:
         requests.post(self.base_url + '/v1.0/devices/updateprofile', data=json.dumps(req))
 
 
-def get_surprises():
-    '''!!!WORKS FOR DEV-only
-    !!! ASK FOR BETTER ARCHITECTURE'''
-    response = requests.get('http://52.53.195.1:8080/v1.0/surprises', auth=('user', 'pass'))
-    return response.text
 
-def add_surprises(period=1, number_surprises=1):
-    '''Add exact number of surprises with exact period
-    !!! NEED TO FINISHED'''
-    surprises_list = get_surprises()
-    for i in range(number_surprises):
-        surprises_list = surprises_list.append({"number: 77", "date : 20170808"})
-    return surprises_list
-
-if __name__ == '__main__':
-    response = get_surprises()
-    print(response)
 
